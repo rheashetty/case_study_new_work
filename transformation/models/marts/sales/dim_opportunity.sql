@@ -7,7 +7,7 @@
 with int_opp as (
     select *
     from {{ ref('int_opportunity__scd2') }}
-),
+)
 select
     {{ dbt_utils.generate_surrogate_key(['salesforce_opportunity_id','opportunity_history_id','islatest']) }} as opportunity_key,
     salesforce_opportunity_id,

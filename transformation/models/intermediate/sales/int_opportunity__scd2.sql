@@ -28,7 +28,7 @@ select
     null as fromforecastcategory,
     forecastcategory,
     forecastcategoryname,
-    prevforecastupdate,
+    null as prevforecastupdate,
     hasopportunitylineitem,
     pricebook2id,
     ownerid,
@@ -63,10 +63,10 @@ select
     isprivate,
     name,
     description,
-    stg_opp_history.fromopportunitystagename
+    stg_opp_history.fromopportunitystagename,
     stg_opp_history.stagename,
     stg_opp_history.prevopportunitystageupdate,
-    stg_opp_history.prevamount
+    stg_opp_history.prevamount,
     stg_opp_history.amount,
     stg_opp_history.probability,
     stg_opp_history.expectedrevenue,

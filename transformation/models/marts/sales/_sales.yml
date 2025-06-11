@@ -3,29 +3,107 @@ version: 2
 models:
   - name: dim_account
     description: Account Dimension
+    columns:
+      - name: account_key
+        tests:
+          - unique
+          - not_null
   - name: dim_campaign
     description: Campaign Dimension
+    columns:
+      - name: campaign_key
+        tests:
+          - unique
+          - not_null
   - name: dim_case
     description: Case Dimension (SCD 2 - history data from source system)
-  - name: fact_case
+    columns:
+      - name: case_key
+        tests:
+          - unique
+          - not_null
+  - name: fct_case
     description: Fact table that shows all cases, each case has a unique record in the fact table and shows only latest state of each case.
+    columns:
+      - name: fct_case_key
+        tests:
+          - unique
+          - not_null
+      - name: case_key
+        tests:
+          - unique
+          - not_null
   - name: dim_contact
     description: Contact Dimension
+    columns:
+      - name: contact_key
+        tests:
+          - unique
+          - not_null
   - name: dim_lead
     description: Lead Dimension
+    columns:
+      - name: lead_key
+        tests:
+          - unique
+          - not_null
   - name: dim_opportunity
     description: Opportunity Dimension (SCD 2 - history data from source system)
+    columns:
+      - name: opportunity_key
+        tests:
+          - unique
+          - not_null
   - name: fct_opportunity
     description: Fact table for opportunity, each record is a unique opportunity
+    columns:
+      - name: fct_opp_key
+        tests:
+          - unique
+          - not_null
+      - name: opportunity_key
+        tests:
+          - unique
+          - not_null
   - name: fct_pricebook_entry
     description: Fact table for pricebook entry
+    columns:
+      - name: pricebook_entry_key
+        tests:
+          - unique
+          - not_null
   - name: dim_product
     description: Product Dimension
+    columns:
+      - name: product_key
+        tests:
+          - unique
+          - not_null
   - name: dim_record_type
     description: Record Type Dimension
+    columns:
+      - name: record_type_key
+        tests:
+          - unique
+          - not_null
   - name: dim_solution
     description: Case solution Dimension
+    columns:
+      - name: solution_key
+        tests:
+          - unique
+          - not_null
   - name: dim_user
     description: Salesforce User Dimension
+    columns:
+      - name: user_key
+        tests:
+          - unique
+          - not_null
   - name: dim_user_role
     description: Salesforce User Roles Dimension
+    columns:
+      - name: user_key
+        tests:
+          - unique
+          - not_null
