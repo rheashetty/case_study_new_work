@@ -1,22 +1,31 @@
 version: 2
 
-sources:
-  - name: sales_model
-    database: dbt
-    schema: sales
-    tables:
-      - name: dim_account
-        description: 
-      - name: campaign
-      - name: case
-      - name: case_history_2
-      - name: contact
-      - name: lead
-      - name: opportunity
-      - name: opportunity_history
-      - name: pricebook_entry
-      - name: product_2
-      - name: record_type
-      - name: solution
-      - name: user
-      - name: user_role
+models:
+  - name: dim_account
+    description: Account Dimension
+  - name: dim_campaign
+    description: Campaign Dimension
+  - name: dim_case
+    description: Case Dimension (SCD 2 - history data from source system)
+  - name: fact_case
+    description: Fact table that shows all cases, each case has a unique record in the fact table and shows only latest state of each case.
+  - name: dim_contact
+    description: Contact Dimension
+  - name: dim_lead
+    description: Lead Dimension
+  - name: dim_opportunity
+    description: Opportunity Dimension (SCD 2 - history data from source system)
+  - name: fct_opportunity
+    description: Fact table for opportunity, each record is a unique opportunity
+  - name: fct_pricebook_entry
+    description: Fact table for pricebook entry
+  - name: dim_product
+    description: Product Dimension
+  - name: dim_record_type
+    description: Record Type Dimension
+  - name: dim_solution
+    description: Case solution Dimension
+  - name: dim_user
+    description: Salesforce User Dimension
+  - name: dim_user_role
+    description: Salesforce User Roles Dimension

@@ -6,7 +6,7 @@
 
 with stg_account as (
     select *
-    from {{ ref('stg_salesforce__acount') }}
+    from {{ ref('stg_salesforce__account') }}
 )
 select
     {{ dbt_utils.generate_surrogate_key(['account_id']) }} as account_key,

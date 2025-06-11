@@ -8,8 +8,8 @@ with int_case as (
     select *
     from {{ ref('int_case__scd2') }}
 ),
-select
-    {{ dbt_utils.generate_surrogate_key(coalesce(salesforce_case_id,case_history_id,islatest)) }} as case_key,
+select 
+    {{ dbt_utils.generate_surrogate_key(['salesforce_case_id','case_history_id','islatest']) }} as case_key,
     salesforce_case_id,
     case_history_id,
     isdeleted,
