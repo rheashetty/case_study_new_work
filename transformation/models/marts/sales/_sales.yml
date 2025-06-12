@@ -24,6 +24,9 @@ models:
           - not_null
   - name: fct_case
     description: Fact table that shows all cases, each case has a unique record in the fact table and shows only latest state of each case.
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('stg_salesforce__case')
     columns:
       - name: fct_case_key
         tests:
@@ -33,6 +36,9 @@ models:
         tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('dim_case')
+              field: case_key
   - name: dim_contact
     description: Contact Dimension
     columns:
@@ -56,6 +62,9 @@ models:
           - not_null
   - name: fct_opportunity
     description: Fact table for opportunity, each record is a unique opportunity
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('stg_salesforce__opportunity')
     columns:
       - name: fct_opp_key
         tests:
@@ -65,13 +74,26 @@ models:
         tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('dim_opportunity')
+              field: opportunity_key
   - name: fct_pricebook_entry
     description: Fact table for pricebook entry
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('stg_salesforce__pricebook_entry')
     columns:
-      - name: pricebook_entry_key
+      - name: pricebook_key
         tests:
           - unique
           - not_null
+      - name: pricebook_entry_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_salesforce__pricebook_entry')
+              field: pricebook_entry_id
   - name: dim_product
     description: Product Dimension
     columns:
@@ -103,7 +125,7 @@ models:
   - name: dim_user_role
     description: Salesforce User Roles Dimension
     columns:
-      - name: user_key
+      - name: user_role_key
         tests:
           - unique
           - not_null

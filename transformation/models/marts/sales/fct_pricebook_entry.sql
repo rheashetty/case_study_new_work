@@ -5,7 +5,7 @@
 }}
 with stg_pricebook as (
     select *
-    from {{ ref('stg_salesforce__pricebook_entry') }}
+    from {{ ref('stg_salesforce__pricebook_entry') }} 
 )
 select
     {{ dbt_utils.generate_surrogate_key(['pricebook_entry_id']) }} as pricebook_key,

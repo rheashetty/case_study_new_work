@@ -5,7 +5,7 @@
 }}
 with stg_user as (
     select *
-    from {{ ref('stg_salesforce__user') }}
+    from {{ ref('stg_salesforce__user') }} 
 )
 select
     {{ dbt_utils.generate_surrogate_key(['user_id']) }} as user_key,
